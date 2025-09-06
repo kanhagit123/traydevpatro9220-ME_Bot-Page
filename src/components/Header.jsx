@@ -1,17 +1,14 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  const loc = useLocation();
   return (
     <header className="app-header">
-      <div className="brand">
-        <span className="logo">Soul AI</span>
-      </div>
+      <h1>Bot AI</h1>
       <nav>
-        <Link to="/" className={loc.pathname === "/" ? "active" : ""}>Chat with Bot</Link>
-        <Link to="/history" className={loc.pathname === "/history" ? "active" : ""}>Past Conversions</Link>
-        <Link to="/feedback" className={loc.pathname === "/feedback" ? "active" : ""}>Feedback</Link>
+        <Link to="/">Chat</Link>
+        <Link to="/history">Past Conversations</Link>
+        <Link to="/feedback">Feedback</Link>
+        <Link to="/" className="active">New Chat</Link>
       </nav>
     </header>
   );

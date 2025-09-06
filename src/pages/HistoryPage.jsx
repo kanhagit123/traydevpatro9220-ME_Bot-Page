@@ -1,40 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-const STORAGE_KEY = "botai_conversations_v1";
-
 export default function HistoryPage() {
-  const [convs, setConvs] = useState([]);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) setConvs(JSON.parse(saved));
+    const savedHistory = JSON.parse(localStorage.getItem("history")) || [];
+    setHistory(savedHistory);
   }, []);
 
   return (
-    <div className="page history-page">
-      <h2>Past Conversions</h2>
-      {convs.length === 0 && <div>No saved conversations.</div>}
+    <div className="history-page">
+      <h2>Past Conversations</h2>
       <div className="history-list">
-        {convs.map(conv => (
-          <div key={conv.id} className="history-card">
-            <div className="hist-header">
-              <strong>{conv.title}</strong>
-              <div>{new Date(conv.createdAt).toLocaleString()}</div>
+        {history.length === 0 ? (
+          <p>No past conversations yet.</p>
+        ) : (
+          history.map((h, i) => (
+            <div className="history-card" key={i}>
+              <div>
+                <strong>You:</strong> {h.question}
+              </div>
+              <div>
+                <strong>Bot:</strong> {h.answer}
+              </div>
             </div>
-            <div className="hist-body">
-              {conv.messages.map((m, i) => (
-                <div key={i} className={`hist-msg ${m.from}`}>
-                  <span className="hist-speaker">{m.from === "ai" ? "Soul AI" : "You"}</span>
-                  <p>{m.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="hist-feedback">
-              <div>Rating: {conv.feedback?.rating || 0} / 5</div>
-              <div>Comment: {conv.feedback?.comment || "-"}</div>
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
