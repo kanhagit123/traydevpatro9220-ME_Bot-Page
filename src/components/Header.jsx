@@ -1,20 +1,21 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
-export default function Header() {
-  const handleNewChat = () => {
-    localStorage.removeItem("history"); // clear history
-  };
-
+const Header = () => {
   return (
     <header className="app-header">
-      <h1>Bot AI</h1>
+      <h1>
+        <span>Soul AI</span>
+      </h1>
       <nav>
         <Link to="/">Chat</Link>
         <Link to="/history">Past Conversations</Link>
         <Link to="/feedback">Feedback</Link>
-        {/* Cypress expects <a> with text "New Chat" */}
-        <Link to="/" onClick={handleNewChat}>New Chat</Link>
+        <button type="button">New Chat</button>
       </nav>
     </header>
   );
-}
+};
+
+export default Header;
