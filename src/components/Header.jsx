@@ -2,20 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const Header = () => {
+export default function Header() {
   return (
     <header className="app-header">
-      <h1>
-        <span>Soul AI</span>
-      </h1>
+      <h1>Bot AI</h1>
       <nav>
         <Link to="/">Chat</Link>
-        <Link to="/history">Past Conversations</Link>
+        <Link to="/history">History</Link>
         <Link to="/feedback">Feedback</Link>
-        <button type="button">New Chat</button>
+        {/* New Chat button should be an <a> link */}
+        <a href="/">New Chat</a>
       </nav>
     </header>
   );
-};
-
-export default Header;
+}

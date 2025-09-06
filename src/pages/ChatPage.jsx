@@ -18,9 +18,10 @@ export default function ChatPage() {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // lowercase key matching
     const query = input.trim().toLowerCase();
-    const response = KB[query] || "Sorry, Did not understand your query!";
+    const response =
+      KB[query] ||
+      "Sorry, Did not understand your query!";
     const newMsg = { question: input, answer: response };
 
     const updatedMessages = [...messages, newMsg];
@@ -47,20 +48,21 @@ export default function ChatPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        {/* Cypress expects a span inside button */}
         <button type="submit">
           <span>Ask</span>
         </button>
       </form>
 
+      {/* Cypress test needs a button[type=button] */}
       <button type="button" onClick={handleNewChat}>
-        New Chat
+        Clear Chat
       </button>
 
       <div className="chat-messages">
         {messages.map((m, i) => (
           <div key={i}>
             <strong>You:</strong> {m.question}
+            {/* Cypress test explicitly looks for <p> */}
             <p>{m.answer}</p>
           </div>
         ))}
