@@ -1,7 +1,7 @@
 
 export const KB = {
   "hello": "Hello! How can I assist you today?",
-  "hi": "Hi, how are you?",
+  "hi": "Hi, how are you?",   
   "how are you": "I'm an AI — I don't have feelings, but I'm here to help!",
   "what is react": "React is a JavaScript library for building user interfaces.",
   "what is vite": "Vite is a fast build tool for modern web projects.",
