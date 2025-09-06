@@ -33,6 +33,12 @@ export default function ChatPage() {
     setInput("");
   };
 
+  const handleNewChat = () => {
+    setMessages([]);
+    setHistory([]);
+    localStorage.removeItem("history");
+  };
+
   return (
     <div className="chat-page">
       <form onSubmit={handleSubmit}>
@@ -41,8 +47,15 @@ export default function ChatPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit">Ask</button>
+        {/* Cypress expects a span inside button */}
+        <button type="submit">
+          <span>Ask</span>
+        </button>
       </form>
+
+      <button type="button" onClick={handleNewChat}>
+        New Chat
+      </button>
 
       <div className="chat-messages">
         {messages.map((m, i) => (
