@@ -40,6 +40,12 @@ export default function ChatPage() {
     setInput("");
   };
 
+  // ✅ Clear chat but keep history persisted
+  const handleNewChat = () => {
+    setMessages([]);
+    setInput("");
+  };
+
   return (
     <div className="chat-page">
       <form onSubmit={handleSubmit}>
@@ -51,13 +57,17 @@ export default function ChatPage() {
         <button type="submit">
           <span>Ask</span>
         </button>
+
+        {/* ✅ Cypress expects button[type='button'] */}
+        <button type="button" onClick={handleNewChat}>
+          New Chat
+        </button>
       </form>
 
       <div className="chat-messages">
         {messages.map((m, i) => (
           <div key={i}>
             <strong>You:</strong> {m.question}
-            {/* Cypress expects bot answers inside <p> */}
             <p>{m.answer}</p>
           </div>
         ))}
