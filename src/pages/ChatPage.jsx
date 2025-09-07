@@ -9,7 +9,6 @@ export default function ChatPage() {
   );
 
   useEffect(() => {
-    // Load saved history into messages when page loads
     const savedHistory = JSON.parse(localStorage.getItem("history")) || [];
     setMessages(savedHistory);
   }, []);
@@ -19,9 +18,16 @@ export default function ChatPage() {
     if (!input.trim()) return;
 
     const query = input.trim().toLowerCase();
-    const response =
-      KB[query] ||
-      "Sorry, Did not understand your query!";
+
+    // ✅ Loose keyword matching
+    let response = "Sorry, Did not understand your query!";
+    for (let key in KB) {
+      if (query.includes(key)) {
+        response = KB[key];
+        break;
+      }
+    }
+
     const newMsg = { question: input, answer: response };
 
     const updatedMessages = [...messages, newMsg];
@@ -32,12 +38,6 @@ export default function ChatPage() {
     localStorage.setItem("history", JSON.stringify(updatedHistory));
 
     setInput("");
-  };
-
-  const handleNewChat = () => {
-    setMessages([]);
-    setHistory([]);
-    localStorage.removeItem("history");
   };
 
   return (
@@ -53,16 +53,11 @@ export default function ChatPage() {
         </button>
       </form>
 
-      {/* Cypress test needs a button[type=button] */}
-      <button type="button" onClick={handleNewChat}>
-        Clear Chat
-      </button>
-
       <div className="chat-messages">
         {messages.map((m, i) => (
           <div key={i}>
             <strong>You:</strong> {m.question}
-            {/* Cypress test explicitly looks for <p> */}
+            {/* Cypress expects bot answers inside <p> */}
             <p>{m.answer}</p>
           </div>
         ))}

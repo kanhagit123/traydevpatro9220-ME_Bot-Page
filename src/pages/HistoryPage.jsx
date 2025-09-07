@@ -17,12 +17,8 @@ export default function HistoryPage() {
         ) : (
           history.map((h, i) => (
             <div className="history-card" key={i}>
-              <div>
-                <strong>You:</strong> {h.question}
-              </div>
-              <div>
-                <strong>Bot:</strong> {h.answer}
-              </div>
+              <div>{h.question}</div>
+              <div>{h.answer}</div>
             </div>
           ))
         )}

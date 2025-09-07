@@ -6,5 +6,8 @@ export const KB = {
   "what is vite": "Vite is a fast build tool for modern web projects.",
   "help": "You can ask me about React, Vite, or general programming questions.",
   "pune": "Pune is a city in the state of Maharashtra, India.",
-  "what is restful api": "RESTful APIs are designed around the REST (Representational State Transfer) architecture, which uses HTTP requests to access and manipulate data. They follow a stateless, client-server, cacheable communications protocol."
+
+  
+  "what is restful api": "RESTful APIs are designed around the REST (Representational State Transfer) architecture, which uses HTTP requests to access and manipulate data. They follow a stateless, client-server, cacheable communications protocol.",
+  "can you explain restful apis?": "RESTful APIs are designed around the REST (Representational State Transfer) architecture, which uses HTTP requests to access and manipulate data. They follow a stateless, client-server, cacheable communications protocol."
 };
